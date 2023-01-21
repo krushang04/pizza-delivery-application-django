@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand">Welcome</a>
+  <!--<form class="form-inline">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>-->
+  <a href="login" class="btn btn-danger">Login</a>
+
+</nav>
+{% for x in messages %}
+<p style="text-align:center">{{x}}
+{% endfor %}
+<div class="container-fluid" style="position: relative;height:600px;background-size:cover;background-image:url({%static "img/background.jpg"%})">
+    <div style="padding:40px;position:absolute;top:50px;right:20px;width:500px;height:320px;background-color: orange;opacity: 0.9;" class="container">
+        <h1 style="text-align:center;color:white">Sign Up!</h1>
+        <form method="POST" action="su">
+            {% csrf_token %}
+            <input type="text" style="margin-bottom:15px" class="form-control" placeholder='username' name="username" required>
+            <input type="password" style="margin-bottom:15px" class="form-control" placeholder='password' name="password" required>
+            <input type="tel" style="margin-bottom:15px" class="form-control" placeholder='phoneno' name="phoneno" pattern="[0-9]{10}" required>
+            <input type="submit" style="display:block;margin:auto;margin-top:10px" value="LOGIN" class="btn btn-success">
+        </form>
+
+    </div>
+
+</div>
+{% endblock content %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand">Welcome</a>
+  <!--<form class="form-inline">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>-->
+  <a href="login" class="btn btn-danger">Login</a>
+
+</nav>
+<div style="padding:25px;width:350px;background-color: #fe6e00;display:block;margin:auto;margin-top:155px">
+    <h2 style="color:white;text-align:center">Login</h2>
+    <form method="POST" action="authenticateuser">
+        {% csrf_token %}
+        <input type="text" style="margin-bottom:15px" class="form-control" placeholder='username' name="username">
+        <input type="password" class="form-control" placeholder='password' name="password">
+        <input type="submit" style="display:block;margin:auto;margin-top:10px" value="LOGIN" class="btn btn-success">
+    </form>
+
+    {% for x in messages %}
+    <p style="text-align:center;color:red"> {{x}}
+    {% endfor %} 
+</div>
+    
+
+{% endblock content %}

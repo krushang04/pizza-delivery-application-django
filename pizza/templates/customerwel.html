@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand">Welcome {{username}}</a>
+  <a href="userorders" class="nav-item" style="color:black;text-decoration:none">My Orders</a>
+  <!--<form class="form-inline">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>-->
+  <a href="userlogout" class="btn btn-danger">Logout</a>
+
+</nav>
+
+<form method="POST" action="placeorder">
+ {% csrf_token %}
+<div class="container" style="margin-top: 80px;width:80%;display: block;margin: auto;">
+  <table style="width:50%;">
+    <tr>
+      <th>Pizza Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+    </tr>
+    {% for x in pizza %}
+    <tr>
+      <td>{{x.name}}</td>
+      <td>{{x.price}}</td>
+      <th><input type="number" name="{{x.id}}" style="width:60px" min=0 value="0"></th>
+    </tr>
+    {% endfor %}
+    
+  </table>
+
+  <input type="text" placeholder="Address" name="address" style="width:400px;margin-top:20px" >
+  <input type="submit" style="margin-top:20px;margin-left:100px" value="Place Order" class="btn btn-outline-success">
+</form>
+{% for x in messages %}
+    <p style="text-align:center;color:green"> {{x}}
+{% endfor %} 
+</div>
+
+
+{% endblock content %}
